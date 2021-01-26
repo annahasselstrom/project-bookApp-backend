@@ -1,0 +1,20 @@
+// Get user specific information
+// app.get('/users/:id/profile', authenticateUser);
+// app.get('/users/:id/profile', async (req, res) => {
+//   const user = await User.findOne({ _id: req.params.id });
+//   const publicProfileMessage = `This is a public profile message for ${user.name}`;
+//   const privateProfileMessage = `This is a private profile message for ${user.name}`;
+
+//   console.log(`Authenticated req.user._id: '${req.user._id.$oid}'`);
+//   console.log(`Requested     user._id    : '${user._id}'`);
+//   console.log(`Equal   : ${req.user_id == user._id}`);
+
+  // Decide private or public here
+  // if (req.user._id.$oid === user._id.$oid) {
+    // Private
+  //   res.status(200).json({ profileMessage: privateProfileMessage });
+  // } else {
+    // Public information or Forbidden (403) because the users don't match
+//     res.status(200).json({ profileMessage: publicProfileMessage });
+//   }
+// });
