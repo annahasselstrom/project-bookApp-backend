@@ -50,20 +50,6 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-//Two arguments are passed - string and object
-const Favorite = new mongoose.model('Favorite', {
-  title: {
-    type: String,
-    required: true,
-  },
-  id: {
-    type: Number,
-    required: true,
-  },
-  subtitle: String,
-  authors: String
-});
-
 //Used to authenticate if the access token submitted in the header when the user clicks the profile details button is a match. If success then will action the secrets GET endpoint. If not then user won't be able to access the status.js component and he catch will be activated and return the error message
 const authenticateUser = async (req, res, next) => {
   try {
@@ -142,31 +128,6 @@ app.get('/secret', async (req, res) => {
   res.status(200).json({ secretMessage });
 });
 
-{/*
-// GET request access all users. Universalized endpoint. 
-app.get('/users', async (req, res) => {
-  const queryParameters = req.query;
-  //console.log(queryParameters); give empty object for client to query in
-  const allUsers = await User.find(req.query);  //.skip(1); //removes one
-  res.json(allUsers);
-});
-
-app.get('/users/:name', async (req, res) => {
-  const singleUser = await User.findOne({ name: req.params.name });
-  res.json(singleUser);
-})
-*/}
-
-/* PATCH request endpoint - posting new book to fav list */
-app.patch('/favorites/id', async (req, res) => {
-  const { favorites } = req.body;
-  const favorite = await 
-  // try/catch
-  // add/store new book fav list in db
-  // respons success or failure for frontend to do something with
-});
-
-
 app.post('/users', async (req, res) => {
   try {
     const { name, password } = req.body;
@@ -178,6 +139,14 @@ app.post('/users', async (req, res) => {
   } catch (error) {
     res.status(400).json({ statusMessage: "Could not create user", error });
   }
+});
+
+/* PATCH request endpoint - posting new book to fav list */
+app.patch('/favorites/:bookId', async (req, res) => {
+  const { favorites } = req.body;
+  const user = await User.updateOne({ favorites });
+  res.status(200).json();
+  // try/catch
 });
 
 /* GET request endpoint - getting the fav list */
@@ -193,8 +162,22 @@ app.delete('favorites/id', async (req, res) => {
   // respons success or failure for frontend to do something with
 })
 
-
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+{/*
+// GET request access all users. Universalized endpoint. 
+app.get('/users', async (req, res) => {
+  const queryParameters = req.query;
+  //console.log(queryParameters); give empty object for client to query in
+  const allUsers = await User.find(req.query);  //.skip(1); //removes one
+  res.json(allUsers);
+});
+
+app.get('/users/:name', async (req, res) => {
+  const singleUser = await User.findOne({ name: req.params.name });
+  res.json(singleUser);
+})
+*/}
