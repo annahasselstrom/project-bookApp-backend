@@ -141,43 +141,7 @@ app.post('/users', async (req, res) => {
   }
 });
 
-/* PATCH request endpoint - posting new book to fav list */
-app.patch('/favorites/:bookId', async (req, res) => {
-  const { favorites } = req.body;
-  const user = await User.updateOne({ favorites });
-  res.status(200).json();
-  // try/catch
-});
-
-/* GET request endpoint - getting the fav list */
-app.get('/favorites', async (req, res) => {
-  // try/catch
-  // respons - the fav list for frontend to output
-});
-
-/* DELETE request endpoint - deleting book from fav list */
-app.delete('favorites/id', async (req, res) => {
-  // try/catch
-  // delete book from list
-  // respons success or failure for frontend to do something with
-})
-
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
-
-{/*
-// GET request access all users. Universalized endpoint. 
-app.get('/users', async (req, res) => {
-  const queryParameters = req.query;
-  //console.log(queryParameters); give empty object for client to query in
-  const allUsers = await User.find(req.query);  //.skip(1); //removes one
-  res.json(allUsers);
-});
-
-app.get('/users/:name', async (req, res) => {
-  const singleUser = await User.findOne({ name: req.params.name });
-  res.json(singleUser);
-})
-*/}
