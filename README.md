@@ -1,7 +1,23 @@
-# Express Starter Project
+# Book App Backend 📚
 
-This project includes the packages and babel setup for an express server, and is just meant to make things a little simpler to get up and running with.
+A book search app making use of the Google Book API.
 
-## Getting started
+## View it Live 👀
 
-Install dependencies with `npm install`, then start the server by running `npm run dev`
+https://reverent-mclean-20de47.netlify.app
+
+For frontend and deployed backend, see Heroku and own repo:
+
+https://github.com/annahasselstrom/project-bookApp-frontend
+
+https://annas-book-app.herokuapp.com/
+
+## Technologies used
+
+- MongoDB for managing authentication and for storing user data
+- React Router for navigation
+- React Redux for storing a user favorite list
+- LocalStorage to persist the list locally in browser and for keeping user logged in
+- Regex for cleaning API-text
+- Styled components
+- Re-usable components for rendering book data
